@@ -42,6 +42,8 @@ extension TableViewDataSource: UITableViewDataSource {
             return UITableViewCell()
         }
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        cell.selectionStyle = .none
+        
         if indexPath.row == 0 {
             cell.textLabel?.text = "word:"
             cell.detailTextLabel?.text = word.text

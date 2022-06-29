@@ -2,11 +2,18 @@
 
 Welcome to the Pura Interview Process. 
 
-We would like you to take this sample app and improve it in some way.
+### Task
+We would like you to take this sample app and improve it in some way. The project is open ended but feel free to follow any #suggestions
 
 Please take 2-4 hours (no more than 4!) to plan and make your improvements. Once you are finished please submit a PR and reach out to Pura to set up your next interview. 
 
-The next interview will be one hour and be prepared to talk about which improvements you made and why you made them. 
+
+### Purpose of Task
+We want to see how you interact with an existing codebase.
+
+A few things we will consider:
+- Code Style, Quality, and understandability
+- Does it work?
 
 ### App
 This is a simple app where you can type in a word and get definitions for that word
@@ -19,5 +26,14 @@ The Dictionary API is found [here](https://dictionaryapi.com/products/api-colleg
 
 and Documentation can be found [here](https://dictionaryapi.com/products/json)
 
-### 
+### Suggestions
+- Add Views and experience For Thesoreus. `Tokens.apiKeyThes`
+- Unit Tests or UI Tests
+- view for empty state
+- Error handling and display Errors to user
+- Refactor to SwiftUI
+- Refactor to Combine
+- Add an easter egg or something to make us laugh
+    - Giphy of the searched word
+    - Konami Code
 

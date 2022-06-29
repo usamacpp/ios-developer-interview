@@ -32,6 +32,9 @@ class ViewController: UIViewController {
                 }
                 
             case .failure(let error):
+                self.dataSource.updateState(.empty) {
+                    self.tableView.reloadData()
+                }
                 print("NETWORK ERROR: ", error.localizedDescription)
             }
         }

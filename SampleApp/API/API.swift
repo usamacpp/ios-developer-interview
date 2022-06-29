@@ -6,7 +6,6 @@
 //
 
 import Foundation
-let baseRequest = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/word?key=\(Tokens.apiKeyDict)"
 
 class API: NSObject {
     static let shared = API()
