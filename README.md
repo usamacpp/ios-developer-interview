@@ -7,8 +7,6 @@ We would like you to take this sample app and improve it in some way. The projec
 
 Please take 2-4 hours to plan and make your improvements. Once you are finished please submit a PR and reach out to Pura to set up your next interview. 
 
-<<<<<<< HEAD
-
 ### Purpose of Task
 We want to see how you interact with an existing codebase.
 
