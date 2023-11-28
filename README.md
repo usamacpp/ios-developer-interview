@@ -5,7 +5,7 @@ Welcome to the Pura Interview Process. Thank you for taking the time and we look
 ### Task
 We would like you to take this sample app and improve it in some way. The project is open ended but feel free to follow any #suggestions
 
-Please take 2-4 hours to plan and make your improvements. Once you are finished please submit a PR and reach out to Pura to set up your next interview. 
+Please take 2-4 hours to plan and make your improvements. Please fork this into your own public repository, make your changes, and submit a PR with your changes. Then share the repository for review. 
 
 ### Purpose of Task
 We want to see how you interact with an existing codebase.
