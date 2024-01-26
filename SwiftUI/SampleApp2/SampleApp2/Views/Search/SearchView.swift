@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @StateObject private var dataSource = DataSource()
+    @StateObject private var dataSource = DataSource(state: DataSource.State.empty(withError: APIError.emptyQuery))
     @State private var textSearch: String = ""
     
     var body: some View {

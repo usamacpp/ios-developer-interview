@@ -15,10 +15,28 @@ class DataSource: ObservableObject {
         case word(Word)
     }
 
-    @Published var state: State = .empty(withError: .emptyQuery)
-    @Published var errorColorCode: Color = .clear
+    @Published var state: State {
+        didSet {
+            switch state {
+            case .empty(let err):
+                switch err {
+                case .tooShort(let wd):
+                    errorColorCode = Color.yellow
+                default:
+                    errorColorCode = Color.clear
+                }
+            default:
+                errorColorCode = Color.clear
+            }
+        }
+    }
+    @Published private(set) var errorColorCode = Color.clear
     
     private var cancellables = Set<AnyCancellable>()
+    
+    init(state: State) {
+        self.state = state
+    }
     
     func search(withText: String) {
         cancellables.removeAll()
