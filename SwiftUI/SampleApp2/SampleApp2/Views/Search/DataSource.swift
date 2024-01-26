@@ -20,7 +20,7 @@ class DataSource: ObservableObject {
             switch state {
             case .empty(let err):
                 switch err {
-                case .tooShort(let wd):
+                case .tooShort(_):
                     errorColorCode = Color.yellow
                 default:
                     errorColorCode = Color.clear
@@ -46,22 +46,9 @@ class DataSource: ObservableObject {
         API.shared.fetchWord(query: withText)
             .receive(on: DispatchQueue.main)
             .sink { res in
-                switch res {
-                case .finished:
-                    print("finished")
-                    self.errorColorCode = Color.clear
-                case .failure(let err):
+                if case .failure(let err) = res {
                     print("error:", err)
                     self.state = State.empty(withError: err)
-                    
-                    switch err {
-                    case .tooShort(_):
-                        self.errorColorCode = Color.yellow
-                    case .emptyQuery:
-                        self.errorColorCode = .clear
-                    default:
-                        self.errorColorCode = .clear
-                    }
                 }
             } receiveValue: { data in
                 print("data:", data)
