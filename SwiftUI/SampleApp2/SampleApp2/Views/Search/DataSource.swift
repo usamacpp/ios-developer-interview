@@ -22,6 +22,8 @@ class DataSource: ObservableObject {
                 switch err {
                 case .tooShort(_):
                     errorColorCode = Color.yellow
+                case .noData, .custom(_), .badURL, .responseDecodeFailed:
+                    errorColorCode = Color.red
                 default:
                     errorColorCode = Color.clear
                 }
