@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct StringIdentifable: Identifiable {
+    let id = UUID()
+    let text: String
+}
+
 struct SearchView: View {
     
     @StateObject private var dataSource = DataSource(state: DataSource.State.empty(withError: APIError.emptyQuery))
@@ -14,7 +19,7 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            Text("Search in Merriam Webster Dictrionary")
+            Text("Search in Merriam Webster Dictionary")
             HStack {
                 TextField("search word", text: $textSearch)
                     .padding(6)
@@ -39,6 +44,9 @@ struct SearchView: View {
             
             if case let .word(wd) = dataSource.state {
                 Text(wd.text)
+                List(wd.definitions.map {StringIdentifable(text: $0)}) {
+                    Text($0.text)
+                }
             } else if case let .empty(err) = dataSource.state {
                 Text("Error: " + err.description).dynamicTypeSize(.xSmall)
             }

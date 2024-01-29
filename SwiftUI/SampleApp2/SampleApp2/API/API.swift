@@ -8,7 +8,11 @@
 import Foundation
 import Combine
 
-class API: NSObject {
+protocol APIProtocol {
+    func fetchWord(query: String) -> AnyPublisher<[WordResponse], APIError>
+}
+
+class API: NSObject, APIProtocol {
     public static let shared = API()
     private let session = URLSession.shared
     

@@ -36,16 +36,16 @@ class DataSource: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(state: State) {
+    init(state: State = State.empty(withError: .emptyQuery)) {
         self.state = state
     }
     
-    func search(withText: String) {
+    func search(withText: String, usingAPI api: APIProtocol = API.shared) {
         cancellables.removeAll()
         
         print("search for:", withText)
         
-        API.shared.fetchWord(query: withText)
+        api.fetchWord(query: withText)
             .receive(on: DispatchQueue.main)
             .sink { res in
                 if case .failure(let err) = res {
