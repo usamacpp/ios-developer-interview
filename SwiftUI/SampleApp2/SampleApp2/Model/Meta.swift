@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Meta: Codable {
     let id: String
     let uuid: String
