@@ -8,14 +8,23 @@
 import SwiftUI
 import Combine
 
-class DataSource: ObservableObject {
-    
-    enum State {
-        case empty(withError: APIError)
-        case word(Word)
-    }
+enum DataSourceState {
+    case empty(withError: APIError)
+    case word(Word)
+}
 
-    @Published var state: State {
+protocol DataSourceProtocol {
+    var api: APIProtocol { get }
+    
+    init(state: DataSourceState, api: APIProtocol)
+    func search(withText: String)
+}
+
+class DataSource: ObservableObject, DataSourceProtocol {
+    
+    let api: APIProtocol
+    
+    @Published var state: DataSourceState {
         didSet {
             switch state {
             case .empty(let err):
@@ -36,11 +45,12 @@ class DataSource: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(state: State = State.empty(withError: .emptyQuery)) {
+    required init(state: DataSourceState = DataSourceState.empty(withError: .emptyQuery), api: APIProtocol = API.shared) {
         self.state = state
+        self.api = api
     }
     
-    func search(withText: String, usingAPI api: APIProtocol = API.shared) {
+    func search(withText: String) {
         cancellables.removeAll()
         
         print("search for:", withText)
@@ -50,7 +60,7 @@ class DataSource: ObservableObject {
             .sink { res in
                 if case .failure(let err) = res {
                     print("error:", err)
-                    self.state = State.empty(withError: err)
+                    self.state = DataSourceState.empty(withError: err)
                 }
             } receiveValue: { data in
                 print("data:", data)
